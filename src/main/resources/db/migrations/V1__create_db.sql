@@ -1,0 +1,27 @@
+CREATE TABLE client IF NOT EXISTS (
+	id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL,
+	name varchar(200) NOT NULL,
+	CONSTRAINT client_pk PRIMARY KEY (id),
+	CONSTRAINT client_check CHECK (LENGTH(name) > 3),
+	REFERENCES ON DELETE CASCADE, ON UPDATE CASCADE
+);
+
+CREATE TABLE planet IF NOT EXISTS (
+	id VARCHAR(100) NOT NULL,
+	name VARCHAR(500) NOT NULL,
+	CONSTRAINT planet_pk PRIMARY KEY (id),
+	CONSTRAINT planet_check CHECK (LENGTH(name) > 1),
+	REFERENCES ON DELETE CASCADE, ON UPDATE CASCADE
+);
+
+CREATE TABLE ticket IF NOT EXISTS (
+    id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL,
+    created_at TIMESTAMP NOT NULL,
+    client_id BIGINT UNSIGNED NOT NULL,
+    from_planet_id VARCHAR(500) NOT NULL,
+    to_planet_id VARCHAR(500) NOT NULL,
+    CONSTRAINT ticket_pk PRIMARY KEY (id),
+    CONSTRAINT client_id_fk FOREIGN KEY (client_id) REFERENCES client.id,
+    CONSTRAINT from_planet_id_fk FOREIGN KEY (from_planet_id) REFERENCES planet.id,
+    CONSTRAINT to_planet_id_fk FOREIGN KEY (to_planet_id) REFERENCES planet.id
+);
