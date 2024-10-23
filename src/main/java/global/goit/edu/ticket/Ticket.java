@@ -1,30 +1,33 @@
 package global.goit.edu.ticket;
 
-import global.goit.edu.planet.Planets;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Builder
-@Entity(name = "ticket")
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "ticket")
 public class Ticket {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "create_at")
-    private String createAt;
+    @Column(name = "created_at")
+    private String createdAt;
 
     @Column(name = "client_id")
     private long clientId;
 
     @Column(name = "from_planet_id")
-    private Planets fromPlanet;
+    private String fromPlanetId;
 
     @Column(name = "to_planet_id")
-    private Planets toPlanet;
+    private String toPlanetId;
 
 }

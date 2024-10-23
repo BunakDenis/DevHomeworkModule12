@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class DateTimeService {
-    private static final String DATE_TIME_PATTERN = "dd-MM-yyyy HH:mm:ss z";
+    private static final String DATE_TIME_PATTERN = "yyyy-MM-dd HH:mm:ss z";
     private static final String DEFAULT_TIME_ZONE = "UTC";
 
     private static Date date;
